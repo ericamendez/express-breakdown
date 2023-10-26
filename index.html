@@ -15,7 +15,7 @@
 
 <body>
   <header>
-    <h1>How Data Flows in 21 Savage Demo</h1>
+    <h1>How Node runs server.js in 21 Savage Demo</h1>
   </header>
   <main>
     <section class="leftContainer">
@@ -30,7 +30,17 @@
         </div>
       </section>
       <section class="content">
-
+        <ul id="pages">
+          <li>
+            <h3>Step 1</h3>
+            <p>Before we run line by line, all global variables (var, let, const) and function declarations get stored
+              in global memory (just declarations not initilization)
+            </p>
+            <p>
+              Now Javascript knows those variables exist in global memory.
+            </p>
+          </li>
+        </ul>
       </section>
 
     </section>
@@ -39,25 +49,25 @@
       <pre>
         <code class="javascript">
           <span id="line1">const express = require('express')</span>
-          <span class="highlight-container" id="line2">const app = express()</span>
-          <span class="highlight-container"id="line3">const bodyParser = require('body-parser')</span>
+          <span id="line2">const app = express()</span>
+          <span id="line3">const bodyParser = require('body-parser')</span>
           <span id="line4">const MongoClient = require('mongodb').MongoClient</span>
           
-          var db, collection;
+          <span id="line5">var db, collection;</span>
           
-          const url = "mongodb+srv://demo:demo@cluster0-q2ojb.mongodb.net/test?retryWrites=true";
-          const dbName = "demo";
+          <span id="line6">const url = "mongodb+srv://demo:demo@cluster0-q2ojb.mongodb.net/test?retryWrites=true";</span>
+          <span id="line7">const dbName = "demo";</span>
           
-          app.listen(3000, () => {
-              <span id="line34">MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (error, client) => {</span>
-                  if(error) {
-                      throw error;
-                  }
-                  db = client.db(dbName);
-                  console.log("Connected to `" + dbName + "`!");
-                });
-              console.log("Listening on port 3000")
-          });
+          <span id="line8">app.listen(3000, () => {</span>
+              <span id="line9"><span id="line34">MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (error, client) => {</span></span>
+                  <span id="line10">if(error) {</span>
+                      <span id="line11">throw error;</span>
+                  <span id="line12">}</span>
+                  <span id="line13">db = client.db(dbName);</span>
+                  <span id="line14">console.log("Connected to `" + dbName + "`!");</span>
+                <span id="line15">});</span>
+              <span id="line16">console.log("Listening on port 3000")</span>
+          <span id="line17">});</span>
           
           app.set('view engine', 'ejs')
           app.use(bodyParser.urlencoded({extended: true}))

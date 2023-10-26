@@ -191,6 +191,17 @@ NAVIGATION
     transform: scale(1);
   }
 
+  #pages {
+    color: #fff;
+    list-style: none;
+    text-align: center;
+    padding: 0 50px;
+  }
+
+  #pages h3 {
+    margin: 0;
+  }
+
 
 /***************************************
 MEDIA QUERIES
