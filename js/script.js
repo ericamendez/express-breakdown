@@ -58,7 +58,6 @@ const content = {
 function addPage(){
     let getContent = content[`step${currentPage}`]
     document.querySelector('#pages').innerHTML = getContent.innerHTML
-    console.log(getContent.highlightLine)
     getContent.highlightLine.forEach(lineNum => {
         let id = document.querySelector(`#line${lineNum}`)
         id.classList.add("highlight-container")
@@ -74,20 +73,33 @@ function removePrevHighlights(){
 }
 
 function nextPage(){
-    removePrevHighlights()
-    currentPage++
-    addPage()
+    if(currentPage < Object.keys(content).length){
+        removePrevHighlights()
+        currentPage++
+        addPage()
+    }else{
+        removePrevHighlights()
+        currentPage = 1
+        addPage()
+    }
 }
 
 function prevPage(){
-    removePrevHighlights()
-    currentPage--
-    addPage()
+    console.log(currentPage, 'current')
+    console.log(Object.keys(content).length, 'how many keys')
+    if(currentPage > 1){
+        removePrevHighlights()
+        currentPage--
+        addPage()
+    }else{
+        removePrevHighlights()
+        currentPage = 1
+        addPage()
+    }
 }
 
 function navigation(){
     Object.keys(content).forEach(key => {
-        console.log(key)
         let span = document.createElement('span')
         let a = document.createElement('a')
         a.href = '#'
