@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/a11y-dark.min.css"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
 </head>
 
@@ -20,8 +19,6 @@
   <main>
     <section class="leftContainer">
       <ul class="navigation">
-        <li><a href="#"><span></span></a></li>
-        <li><a href="#"><span></span></a></li>
       </ul>
       <section class="arrowContainer">
         <a id="prev" class="arrow"></a>
@@ -32,12 +29,10 @@
       <section class="content">
         <ul id="pages">
           <li>
-            <h3>Step 1</h3>
-            <p>Before we run line by line, all global variables (var, let, const) and function declarations get stored
-              in global memory (just declarations not initilization)
-            </p>
+            <h3>Step2</h3>
             <p>
-              Now Javascript knows those variables exist in global memory.
+              User goes to localhost:3000 in browser, our server heard that and now continues running the highlighted
+              lines
             </p>
           </li>
         </ul>
@@ -69,46 +64,46 @@
               <span id="line16">console.log("Listening on port 3000")</span>
           <span id="line17">});</span>
           
-          app.set('view engine', 'ejs')
-          app.use(bodyParser.urlencoded({extended: true}))
-          app.use(bodyParser.json())
-          app.use(express.static('public'))
+          <span id="line18">app.set('view engine', 'ejs')</span>
+          <span id="line19">app.use(bodyParser.urlencoded({extended: true}))</span>
+          <span id="line20">app.use(bodyParser.json())</span>
+          <span id="line21">app.use(express.static('public'))</span>
   
-          app.get('/', (req, res) => {
-            db.collection('messages').find().toArray((err, result) => {
-              if (err) return console.log(err)
-              res.render('index.ejs', {messages: result})
-            })
-          })
+          <span id="line22">app.get('/', (req, res) => {</span>
+            <span id="line23">db.collection('messages').find().toArray((err, result) => {</span>
+              <span id="line24">if (err) return console.log(err)</span>
+              <span id="line25">res.render('index.ejs', {messages: result})</span>
+            <span id="line26">})</span>
+          <span id="line27">})</span>
           
-          app.post('/messages', (req, res) => {
-            db.collection('messages').insertOne({name: req.body.name, msg: req.body.msg, thumbUp: 0, thumbDown:0}, (err, result) => {
-              if (err) return console.log(err)
-              console.log('saved to database')
-              res.redirect('/')
-            })
-          })
+          <span id="line28">app.post('/messages', (req, res) => {</span>
+            <span id="line29">db.collection('messages').insertOne({name: req.body.name, msg: req.body.msg, thumbUp: 0, thumbDown:0}, (err, result) => {</span>
+              <span id="line30">if (err) return console.log(err)</span>
+              <span id="line31">console.log('saved to database')</span>
+              <span id="line32">res.redirect('/')</span>
+            <span id="line33">})</span>
+          <span id="line34">})</span>
           
-          app.put('/messages', (req, res) => {
-            db.collection('messages').findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
-              $set: {
-                thumbUp:req.body.thumbUp + 1
-              }
-            }, {
-              sort: {_id: -1},
-              upsert: true
-            }, (err, result) => {
-              if (err) return res.send(err)
-              res.send(result)
-            })
-          })
+          <span id="line35">('/messages', (req, res) => {</span>
+            <span id="line36">db.collection('messages').findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {</span>
+              <span id="line37">$set: {</span>
+                <span id="line38">thumbUp:req.body.thumbUp + 1</span>
+              <span id="line39">}</span>
+            <span id="line40">}, {</span>
+              <span id="line41">sort: {_id: -1},</span>
+              <span id="line42">upsert: true</span>
+            <span id="line43">}, (err, result) => {</span>
+              <span id="line44">if (err) return res.send(err)</span>
+              <span id="line45">res.send(result)</span>
+            <span id="line46">})</span>
+          <span id="line47">})</span>
           
-          app.delete('/messages', (req, res) => {
-            db.collection('messages').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {
-              if (err) return res.send(500, err)
-              res.send('Message deleted!')
-            })
-          })
+          <span id="line48">app.delete('/messages', (req, res) => {</span>
+            <span id="line49">db.collection('messages').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {</span>
+              <span id="line50">if (err) return res.send(500, err)</span>
+              <span id="line51">res.send('Message deleted!')</span>
+            <span id="line52">})</span>
+          <span id="line53">})</span>
           
         </code>
       </pre>
