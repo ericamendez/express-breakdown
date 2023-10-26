@@ -10,18 +10,102 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/a11y-dark.min.css"> -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/tomorrow-night-bright.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
 </head>
 
 <body>
-  <pre><code class="javascript">
-    $(document).ready(function() {
-      $('pre code').each(function(i, block) {
-        hljs.highlightBlock(block);
-      });
-    });
-    </code></pre>
+  <header>
+    <h1>How Data Flows in 21 Savage Demo</h1>
+  </header>
+  <main>
+    <section class="leftContainer">
+      <ul class="navigation">
+        <li><a href="#"><span></span></a></li>
+        <li><a href="#"><span></span></a></li>
+      </ul>
+      <section class="arrowContainer">
+        <a id="prev" class="arrow"></a>
+        <div class="zebra">
+          <a id="next" class="arrow"></a>ß
+        </div>
+      </section>
+      <section class="content">
+
+      </section>
+
+    </section>
+
+    <section class="rightContainer">
+      <pre>
+        <code class="javascript">
+          <span id="line1">const express = require('express')</span>
+          <span class="highlight-container" id="line2">const app = express()</span>
+          <span class="highlight-container"id="line3">const bodyParser = require('body-parser')</span>
+          <span id="line4">const MongoClient = require('mongodb').MongoClient</span>
+          
+          var db, collection;
+          
+          const url = "mongodb+srv://demo:demo@cluster0-q2ojb.mongodb.net/test?retryWrites=true";
+          const dbName = "demo";
+          
+          app.listen(3000, () => {
+              <span id="line34">MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (error, client) => {</span>
+                  if(error) {
+                      throw error;
+                  }
+                  db = client.db(dbName);
+                  console.log("Connected to `" + dbName + "`!");
+                });
+              console.log("Listening on port 3000")
+          });
+          
+          app.set('view engine', 'ejs')
+          app.use(bodyParser.urlencoded({extended: true}))
+          app.use(bodyParser.json())
+          app.use(express.static('public'))
+  
+          app.get('/', (req, res) => {
+            db.collection('messages').find().toArray((err, result) => {
+              if (err) return console.log(err)
+              res.render('index.ejs', {messages: result})
+            })
+          })
+          
+          app.post('/messages', (req, res) => {
+            db.collection('messages').insertOne({name: req.body.name, msg: req.body.msg, thumbUp: 0, thumbDown:0}, (err, result) => {
+              if (err) return console.log(err)
+              console.log('saved to database')
+              res.redirect('/')
+            })
+          })
+          
+          app.put('/messages', (req, res) => {
+            db.collection('messages').findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
+              $set: {
+                thumbUp:req.body.thumbUp + 1
+              }
+            }, {
+              sort: {_id: -1},
+              upsert: true
+            }, (err, result) => {
+              if (err) return res.send(err)
+              res.send(result)
+            })
+          })
+          
+          app.delete('/messages', (req, res) => {
+            db.collection('messages').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {
+              if (err) return res.send(500, err)
+              res.send('Message deleted!')
+            })
+          })
+          
+        </code>
+      </pre>
+    </section>
+  </main>
+
+  <!-- https://codepen.io/silverdrop/pen/rNNmZJ -->
 
   <script src="js/script.js" type="text/javascript"></script>
 </body>
