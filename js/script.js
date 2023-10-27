@@ -1,3 +1,5 @@
+let nav = document.querySelector('.navigation')
+
 let currentPage = 1
 
 const content = {
@@ -39,19 +41,26 @@ const content = {
     },
     step3: {
         innerHTML: `<h3>Step 3:</h3>
-        <p>These first highlighted four lines are configuring express:</p>
-        <img class="lineImg" src="images/ejs.png">
-        <p>Configures express to use EJS view engine</p>
-        <img class="lineImg" src="images/bodyParser.png">
-        <p>Middleware handling different types of incoming data from client requests</p>
-        <img class="lineImg" src="images/public.png">
-        <p>This is setting Express.js application to serve static files from a directory named 'public' giving access to css, js in this folder</p>
-        <p>The browser then immediatly calls the root path meaning we immediately run: </p>
+        <p>The first highlighted four lines are configuring Express</p>
+        <p>The browser then immediatly calls the root path "/" meaning we immediately run: </p>
         <img class="fullImg" src="images/get.png">
         <p>& render our root page</p>
         <img class="fullImg" src="images/savage-browser.png">
+        <p>Breaking down the get:</p>
+        <img class="fullImg" src="images/collection.png">
+        <p>This finds the collection you want to "get" <a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#mongodb-method-db.collection.find">MongoDB Docs</a>
+        and stores the results in your result parameter</p>
+        <img class="fullImg" src="images/render.png">
+        <p>Then this line renders your index.ejs file onto the browser, & sends your frontend (ejs) the results stored in the messages key</p>
         `,
         highlightLine: [18, 19, 20, 21, 22, 23, 24, 25, 26, 27]
+    },
+    step4: {
+        innerHTML: `<h3>Step 4: </h3>
+        <p>These lines now act kind of like event listeners, where they are listening for these paths being called from the browser</p>
+        <p>Once they are called, we can run the callbacks passed in</p>
+        `,
+        highlightLine: [22, 28, 35, 48]
     }
 }
 
@@ -73,29 +82,32 @@ function removePrevHighlights(){
 }
 
 function nextPage(){
+    removePrevHighlights()
     if(currentPage < Object.keys(content).length){
-        removePrevHighlights()
+        nav.children[currentPage-1].children[0].classList.remove('selected')
+        nav.children[currentPage].children[0].classList.add('selected')
         currentPage++
-        addPage()
     }else{
-        removePrevHighlights()
+        nav.children[Object.keys(content).length-1].children[0].classList.remove('selected')
+        nav.children[0].children[0].classList.add('selected')
         currentPage = 1
-        addPage()
     }
+    addPage()
 }
 
 function prevPage(){
-    console.log(currentPage, 'current')
-    console.log(Object.keys(content).length, 'how many keys')
+    removePrevHighlights()
     if(currentPage > 1){
-        removePrevHighlights()
+        console.log(currentPage)
         currentPage--
-        addPage()
+        nav.children[currentPage].children[0].classList.remove('selected')
+        nav.children[currentPage-1].children[0].classList.add('selected')
     }else{
-        removePrevHighlights()
-        currentPage = 1
-        addPage()
+        nav.children[0].children[0].classList.remove('selected')
+        nav.children[Object.keys(content).length-1].children[0].classList.add('selected')
+        currentPage = Object.keys(content).length
     }
+    addPage()
 }
 
 function navigation(){
@@ -107,12 +119,25 @@ function navigation(){
 
         a.appendChild(span)
         li.appendChild(a)
-        document.querySelector('.navigation').appendChild(li)
+        nav.appendChild(li)
     })
+    nav.children[0].children[0].classList.add('selected')
+}
+
+function selectedPage(){
+
 }
 
 addPage()
 navigation()
 
+
 document.querySelector('#next').addEventListener('click', nextPage)
 document.querySelector('#prev').addEventListener('click', prevPage)
+
+// let extra = `<img class="lineImg" src="images/ejs.png">
+// <p class="smallerFont">Configures express to use EJS view engine</p>
+// <img class="lineImg" src="images/bodyParser.png">
+// <p class="smallerFont">Middleware handling different types of incoming data from client requests</p>
+// <img class="lineImg" src="images/public.png">
+// <p class="smallerFont">This is setting Express.js application to serve static files from a directory named 'public' giving access to css, js in this folder</p>`

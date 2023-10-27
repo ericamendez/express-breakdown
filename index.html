@@ -22,7 +22,7 @@
       </ul>
       <section class="arrowContainer">
         <a id="prev" class="arrow"></a>
-        <div class="zebra">
+        <div class="rightArrow">
           <a id="next" class="arrow"></a>ß
         </div>
       </section>
@@ -84,7 +84,7 @@
             <span id="line33">})</span>
           <span id="line34">})</span>
           
-          <span id="line35">('/messages', (req, res) => {</span>
+          <span id="line35">app.put('/messages', (req, res) => {</span>
             <span id="line36">db.collection('messages').findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {</span>
               <span id="line37">$set: {</span>
                 <span id="line38">thumbUp:req.body.thumbUp + 1</span>
