@@ -59,6 +59,9 @@ const content = {
         innerHTML: `<h3>Step 4: </h3>
         <p>These lines now act kind of like event listeners, where they are listening for these paths being called from the browser</p>
         <p>Once they are called, we can run the callbacks passed in</p>
+        <img class="lineImg" src="images/reqres.png">
+        <p>The "req" parameter holds information about the client's HTTP request to your Express application (this will be the information passed by your clientside  fetch())</p>
+        <p>The "res" parameter will hold information and methods for constructing and sending an HTTP response back to the client</p>
         `,
         highlightLine: [22, 28, 35, 48]
     }
