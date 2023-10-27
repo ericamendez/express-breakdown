@@ -111,11 +111,14 @@ function prevPage(){
 }
 
 function navigation(){
-    Object.keys(content).forEach(key => {
+    Object.keys(content).forEach((key, i) => {
         let span = document.createElement('span')
+        span.value = i+1
         let a = document.createElement('a')
+        a.value = i+1
         a.href = '#'
         let li = document.createElement('li')
+        li.value = i+1
 
         a.appendChild(span)
         li.appendChild(a)
@@ -124,8 +127,11 @@ function navigation(){
     nav.children[0].children[0].classList.add('selected')
 }
 
-function selectedPage(){
-
+function selectedPage(e){
+    document.querySelector('.selected').classList.remove('selected')
+    e.target.parentNode.classList.add('selected')
+    currentPage = e.target.value
+    addPage()
 }
 
 addPage()
@@ -134,6 +140,7 @@ navigation()
 
 document.querySelector('#next').addEventListener('click', nextPage)
 document.querySelector('#prev').addEventListener('click', prevPage)
+document.querySelector('.navigation').addEventListener('click', selectedPage)
 
 // let extra = `<img class="lineImg" src="images/ejs.png">
 // <p class="smallerFont">Configures express to use EJS view engine</p>
