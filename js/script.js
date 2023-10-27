@@ -128,6 +128,7 @@ function navigation(){
 }
 
 function selectedPage(e){
+    removePrevHighlights()
     document.querySelector('.selected').classList.remove('selected')
     e.target.parentNode.classList.add('selected')
     currentPage = e.target.value
