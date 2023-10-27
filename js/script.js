@@ -30,12 +30,12 @@ const content = {
           lines
         </p>
         <img class="lineImg" src="images/url.png">
-        <p>This code then get ran to connect to our MongoDB database. All details in <a href="https://mongodb.github.io/node-mongodb-native/api-generated/mongoclient.html#connect">MongoDB Docs</a></p>
+        <p>This code then gets ran to connect to our MongoDB database. All details in <a href="https://mongodb.github.io/node-mongodb-native/api-generated/mongoclient.html#connect">MongoDB Docs</a></p>
         <img class="fullImg" src="images/mongo.png">
         <p>But now in this line</p>
         <img class="lineImg" src="images/db.png">
         <p>We are storing an instance of our database in the empty global db variable we declared before </p>
-        <p>This now gives us access to all sorts of methods that give us access to our database</p>
+        <p>This now gives us all sorts of methods that give us access to our MongoDB database</p>
         `,
         highlightLine: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
     },
@@ -145,6 +145,18 @@ navigation()
 document.querySelector('#next').addEventListener('click', nextPage)
 document.querySelector('#prev').addEventListener('click', prevPage)
 document.querySelector('.navigation').addEventListener('click', selectedPage)
+
+document.body.addEventListener('keydown', function(event){ 
+    const key = event.key; 
+    switch (key) { 
+        case "ArrowLeft": 
+            prevPage()
+            break; 
+        case "ArrowRight": 
+            nextPage()
+            break; 
+    } 
+})
 
 // let extra = `<img class="lineImg" src="images/ejs.png">
 // <p class="smallerFont">Configures express to use EJS view engine</p>
