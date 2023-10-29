@@ -80,6 +80,10 @@ header{
 .red{
   color: red;
 }
+
+.hide{
+  display: none;
+}
 /***************************************
 NAVIGATION
 *****************************************/
@@ -172,7 +176,7 @@ NAVIGATION
     font-size: 0; */
     /* height: 60px; */
     z-index: 10;
-    text-align: center;
+    /* text-align: center; */
   }
   
   .navigation li {

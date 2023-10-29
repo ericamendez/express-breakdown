@@ -58,12 +58,40 @@ const content = {
     step4: {
         innerHTML: `<h3>Step 4: </h3>
         <p>These lines now act kind of like event listeners, where they are listening for these paths being called from the browser</p>
-        <p>Once they are called, we can run the callbacks passed in</p>
+        <p>Once they are called, node can run the callbacks passed in</p>
         <img class="lineImg" src="images/reqres.png">
         <p>The "req" parameter holds information about the client's HTTP request to your Express application (this will be the information passed by your clientside  fetch())</p>
         <p>The "res" parameter will hold information and methods for constructing and sending an HTTP response back to the client</p>
         `,
         highlightLine: [22, 28, 35, 48]
+    },
+    step5: {
+        innerHTML: `<h3>Step 5: </h3>
+        <p>"db" is the variable holding our MongoDB instance that gives us methods we can use to access our database</p>
+        <p>"collection()" is a method we got from ^ that lets us get a specific collection in our database. In this case we are grabbing the "messages" collection</p>
+        <p>then we can use various methods on that </p>
+        <p>find()</p>
+        <p>insertOne()</p>
+        <p>findOneAndUpdate()</p>
+        <p>findOneAndDelete()</p>
+        <p>Are all methods given to us that allow us to view and update our database. 
+        More info on how to use these methods, and what you need to pass can be found here <a href="https://www.mongodb.com/docs/manual/reference/method/js-collection/">MongoDB Docs</a>
+        </p>
+        `,
+        highlightLine: [23, 29, 36, 49]
+    },
+    step6: {
+        innerHTML: `<h3>Step 6: </h3>
+        <p>Then these lines are how we respond back to the client.</p>
+        <p>"res.render()" will render the ejs page on your browser, and pass ejs whatever information you want to show on your clientside </p>
+        <p>"res.redirect()" will redirect you to the page you pass in</p>
+        <p>"res.send()" sends the message to the terminal</p>
+        `,
+        highlightLine: [25, 32, 45, 51]
+    },
+    step7: {
+        innerHTML: `<h3>Data Flow Between Server and Client: </h3>`,
+        highlightLine: []
     }
 }
 
@@ -95,6 +123,7 @@ function nextPage(){
         nav.children[0].children[0].classList.add('selected')
         currentPage = 1
     }
+    renderDataFlowPage()
     addPage()
 }
 
@@ -110,6 +139,7 @@ function prevPage(){
         nav.children[Object.keys(content).length-1].children[0].classList.add('selected')
         currentPage = Object.keys(content).length
     }
+    renderDataFlowPage()
     addPage()
 }
 
@@ -135,7 +165,16 @@ function selectedPage(e){
     document.querySelector('.selected').classList.remove('selected')
     e.target.parentNode.classList.add('selected')
     currentPage = e.target.value
+    renderDataFlowPage()
     addPage()
+}
+
+function renderDataFlowPage(){
+    if(currentPage === 7){
+        document.querySelector("pre").classList.add('hide')
+    }else{
+        document.querySelector("pre").classList.remove('hide')
+    }
 }
 
 addPage()
