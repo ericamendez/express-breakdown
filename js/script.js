@@ -130,7 +130,6 @@ function nextPage(){
 function prevPage(){
     removePrevHighlights()
     if(currentPage > 1){
-        console.log(currentPage)
         currentPage--
         nav.children[currentPage].children[0].classList.remove('selected')
         nav.children[currentPage-1].children[0].classList.add('selected')

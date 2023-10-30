@@ -59,6 +59,7 @@ main{
 
 .rightContainer{
   background-color: rgb(40,44,52);
+  height: 1057px;
 }
 
 header{
@@ -84,6 +85,7 @@ header{
 .hide{
   display: none;
 }
+
 /***************************************
 NAVIGATION
 *****************************************/
