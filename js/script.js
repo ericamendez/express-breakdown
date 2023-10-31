@@ -171,8 +171,10 @@ function selectedPage(e){
 function renderDataFlowPage(){
     if(currentPage === 7){
         document.querySelector("pre").classList.add('hide')
+        document.querySelector(".dataFlow").classList.remove('hide')
     }else{
         document.querySelector("pre").classList.remove('hide')
+        document.querySelector(".dataFlow").classList.add('hide')
     }
 }
 
