@@ -235,6 +235,51 @@ DATA FLOW
 .dataFlow {
   text-align: center;
   color: white;
+  padding-top: 30px;
+}
+
+.serverToClient>section, .clientToServer>section{
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  justify-content: center;
+  text-align: center;
+  padding: 20px 10%;
+}
+
+.serverToClient img, .clientToServer img {
+  width: 100%;
+}
+
+.h4Server {
+  background-color: lightcoral;
+  margin: 0;
+}
+
+.h4Ejs {
+  background-color: yellow;
+  color: black;
+  margin: 0;
+}
+
+.h4Client {
+  background-color: green;
+  margin: 0;
+}
+
+.server {
+  border: lightcoral solid 10px;
+}
+
+.ejs {
+  border: yellow solid 10px;
+}
+
+.client {
+  border: green solid 10px;
+}
+
+svg {
+  color: white;
 }
 
 /***************************************

@@ -90,7 +90,18 @@ const content = {
         highlightLine: [25, 32, 45, 51]
     },
     step7: {
-        innerHTML: `<h3>Data Flow Between Server and Client: </h3>`,
+        innerHTML: `<h3>Data Flow Between Server and Client: </h3>
+        <h4 class="red">Server -> Client:</h4>
+        <p>server.js sends data to index.ejs when the server renders the EJS through the second argument in res.render().</p>
+        <p>This object is then available in EJS where you can insert the property message in your ejs code</p>
+        <h4 class="red">Client -> Server:</h4>
+        <p>From the main.js you can grab data from your the DOM like you have been doing.
+        To pass this data to the server you can use a fetch</p>
+        <p>You can send whatever data you want to send to the server in the "body: JSON.stringify{}" property of the fetch</p>
+        <p>fetch('messages') adds /messages at  the end of your url "localhost:3000/messages"</p>
+        <p> the server then hears that and looks for 
+        the route /messages that is  a put method in you server.js "app.put('/messages'...)"</p>
+        `,
         highlightLine: []
     }
 }
